@@ -1,6 +1,6 @@
 package solve;
 
-public class Game {
+public class TicTacToeGame {
 
     public static void main(String args[]){
 
