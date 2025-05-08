@@ -28,22 +28,24 @@ public class TicTacToeGame {
         int cellNumber = 1;
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
-                board[i][j] = (char)('0' + cellNumber++);
+                board[i][j] = (char) ('0' + cellNumber++);
             }
         }
     }
 
-    private void printBoard(){
+    private void printBoard() {
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
-                System.out.println(" " + board[i][j]);
-                if (j < COLS - 1){
-                    System.out.println(" |");
+                if (j < COLS - 1) {
+                    System.out.print(board[i][j] + " | ");
+                } else {
+                    System.out.print(board[i][j]);
                 }
+            }
+            if (i < ROWS - 1) {
+                System.out.println("\n---------");
+            } else {
                 System.out.println();
-                if (i < ROWS - 1){
-                    System.out.println("---|---|---");
-                }
             }
 
         }
@@ -53,17 +55,18 @@ public class TicTacToeGame {
      * Запускает игру и управляет игровым циклом.
      */
     private void play() {
-        while(!gameEnded){
+        while (!gameEnded) {
             printBoard();
             System.out.println("Игрок " + currentPlayer + ", выберите клетку (1-9): ");
             int cell;
-            while(true){
+            while (true) {
                 String input = scanner.nextLine();
             }
         }
 
     }
-    private void checkwin(){
+
+    private void checkwin() {
 
     }
 
