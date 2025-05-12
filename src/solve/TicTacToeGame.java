@@ -61,13 +61,60 @@ public class TicTacToeGame {
             int cell;
             while (true) {
                 String input = scanner.nextLine();
+                try {
+                    cell = Integer.parseInt(input);
+                    if (cell < 1 || cell > 9) {
+                        System.out.println("Некорректный номер. Попробуйте снова:");
+                        continue;
+                    }
+                    int row = (cell - 1) / 3;
+                    int col = (cell - 1) % 3;
+                    if (board[row][col] == 'X' || board[row][col] == 'O') {
+                        System.out.println("Клетка уже занята. Выберите другую:");
+                    } else {
+                        board[row][col] = currentPlayer;
+                        break;
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Введите число от 1 до 9:");
+                }
+            }
+
+            movesCount++;
+            if (checkWin()) {
+                printBoard();
+                System.out.println("Игрок " + currentPlayer + " победил!");
+                gameEnded = true;
+            } else if (movesCount == 9) {
+                printBoard();
+                System.out.println("Ничья!");
+                gameEnded = true;
+            } else {
+                currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
             }
         }
-
     }
 
-    private void checkwin() {
+    private boolean checkWin() {
 
+        for (int i = 0; i < 3; i++) {
+            if (board[i][0] == currentPlayer &&
+                    board[i][1] == currentPlayer &&
+                    board[i][2] == currentPlayer) return true;
+            if (board[0][i] == currentPlayer &&
+                    board[1][i] == currentPlayer &&
+                    board[2][i] == currentPlayer) return true;
+        }
+
+
+        if (board[0][0] == currentPlayer &&
+                board[1][1] == currentPlayer &&
+                board[2][2] == currentPlayer) return true;
+        if (board[0][2] == currentPlayer &&
+                board[1][1] == currentPlayer &&
+                board[2][0] == currentPlayer) return true;
+
+        return false;
     }
 
     public static void main(String args[]) {
